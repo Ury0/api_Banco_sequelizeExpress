@@ -17,4 +17,17 @@ export default db.define('client', {
         allowNull: false,
         unique: true
     },
-})
+    cpf: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+    },
+    cep: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    senha: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
+});

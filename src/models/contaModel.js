@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import db from '../db';
+import db from '../db.js';
 
 export default db.define('conta', {
     id: {
@@ -16,13 +16,16 @@ export default db.define('conta', {
         type: Sequelize.FLOAT,
         allowNull: false
     },
-    cliente:{
-        type: Sequelize.OBJECT,
-        allowNull: false,
-        unique: true
-    },
     token:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    clientId: { 
+        type: Sequelize.INTEGER.UNSIGNED, 
+        allowNull: false, 
+        references: { 
+            model: 'clients', // Nome da tabela 
+            key: 'id' // Nome da coluna referenciada 
+        } 
     }
-})
+});

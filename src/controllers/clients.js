@@ -1,25 +1,31 @@
-import ClientRepository  from '../models/clientsModel.js';
+import clientsModel  from '../models/clientsModel.js';
 
 function findAll(req,res){
     ClientRepository.findAll().then( (result) => res.json(result));
 }
 
 function findClient(req,res){
-    ClientRepository.findByPk(req.params.id)
+    clientsModel.findByPk(req.params.id)
     .then( (result) => res.json(result))
 }
 
 function addClient(req,res){
-    ClientRepository.create({
+    clientsModel.create({
         nome: req.body.nome,
-        email: req.body.email
+        email: req.body.email,
+        cpf: req.body.cpf,
+        cep: req.body.cep,
+        senha: req.body.senha
     }).then( (result) => res.json(result))
 };
 
 async function updateClient(req,res){
-    await ClientRepository.update({
+    await clientsModel.update({
         nome: req.body.nome,
-        email: req.body.email
+        email: req.body.email,
+        cpf: req.body.cpf,
+        cep: req.body.cep,
+        senha: req.body.senha
     },
     {
         where: {
@@ -27,18 +33,18 @@ async function updateClient(req,res){
     }
     });
 
-    ClientRepository.findByPk(req.params.id)
+    clientsModel.findByPk(req.params.id)
     .then( (result) => res.json(result))
 };
 
 async function deleteClient(req,res){
-    await ClientRepository.destroy({
+    await clientsModel.destroy({
         where: {
           id: req.params.id
         }
       });
 
-    ClientRepository.findAll().then((result) => res.json(result));
+    clientsModel.findAll().then((result) => res.json(result));
 };
 
 export default { findAll, addClient, findClient, updateClient, deleteClient } 
