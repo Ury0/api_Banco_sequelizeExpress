@@ -1,19 +1,19 @@
-import conta from '../models/contaModel.js'; // Certifique-se de que o caminho está correto
+import contaModel from '../models/contaModel.js'; // Certifique-se de que o caminho está correto
 
 function findAll(req, res) {
-    conta.findAll()
+    contaModel.findAll()
         .then((result) => res.json(result))
         .catch((error) => res.status(500).send(error));
 }
 
 function findCont(req, res) {
-    conta.findByPk(req.params.id)
+    contaModel.findByPk(req.params.id)
         .then((result) => res.json(result))
         .catch((error) => res.status(500).send(error));
 }
 
 function addCont(req, res) {
-    conta.create({
+    contaModel.create({
         nome: req.body.nome,
         saldo: req.body.saldo, // Corrigido de 'senha' para 'saldo'
         cliente: req.body.cliente,
@@ -25,7 +25,7 @@ function addCont(req, res) {
 }
 
 async function updateCont(req, res) {
-    await conta.update({
+    await contaModel.update({
         nome: req.body.nome,
         saldo: req.body.saldo, // Corrigido de 'senha' para 'saldo'
         cliente: req.body.cliente,
@@ -37,14 +37,14 @@ async function updateCont(req, res) {
         }
     })
     .then(() => {
-        return conta.findByPk(req.params.id);
+        return contaModel.findByPk(req.params.id);
     })
     .then((result) => res.json(result))
     .catch((error) => res.status(500).send(error));
 }
 
 async function deleteCont(req, res) {
-    await conta.destroy({
+    await contaModel.destroy({
         where: {
             id: req.params.id
         }

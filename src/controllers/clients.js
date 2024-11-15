@@ -1,7 +1,7 @@
 import clientsModel  from '../models/clientsModel.js';
 
 function findAll(req,res){
-    ClientRepository.findAll().then( (result) => res.json(result));
+    clientsModel.findAll().then( (result) => res.json(result));
 }
 
 function findClient(req,res){
