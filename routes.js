@@ -5,7 +5,7 @@ import conta from './src/controllers/conta.js';
 const routes = express.Router();
 
 routes.get("/", function (req, res, next) {
-    res.status(200).send("Ok").end();
+    res.statusCode(200).send("Ok").end();
 });
 
 routes.get('/clients',clients.findAll, function (res) {
