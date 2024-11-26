@@ -7,7 +7,7 @@ function findAll(req, res) {
 }
 
 function findCont(req, res) {
-    contaModel.findByPk(req.params.id)
+    contaModel.findByOne(req.params.nome)
         .then((result) => res.json(result))
         .catch((error) => res.status(500).send(error));
 }
