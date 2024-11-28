@@ -1,12 +1,8 @@
 import clientsModel from '../models/clientsModel.js';
 
 async function logI(req, res) {
-  const { email, senha } = req.params; // Use req.body para POST requests
-
   try {
-    const user = await clientsModel.findOne({
-      where: { email, senha }
-    });
+    const user = await clientsModel.findOne(req.params.email);
     if (user) {
       process.env.login = true;
       res.status(200).send({ message: 'login bem-sucedido!' });
@@ -17,7 +13,7 @@ async function logI(req, res) {
   } catch (error) {
     process.env.login = false;
     console.error('erro no login:', error);
-    res.status(500).send({ message: 'erro interno no servidor' });
+    res.status(500).send({ message: 'erRo interno no servidor' });
   }
 }
 
