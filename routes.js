@@ -5,7 +5,7 @@ import logI from './src/controllers/login.js';
 
 const routes = express.Router();
 
-routes.post("/", logI, function (res) {
+routes.post("/login", logI, function (res) {
     res.statusCode(200).send("Ok").end();
 });
 
