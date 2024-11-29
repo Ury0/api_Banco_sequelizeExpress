@@ -4,14 +4,17 @@ async function logI(req, res) {
   try {
     // Capturar o email da requisição
     const email = req.body.email;
+    const senha = req.body.senha;
+    console.log(req.body)
 
     // Verificar se o email foi fornecido
     if (!email) {
       return res.status(400).json({ error: 'Email é obrigatório' });
+
     }
 
     // Buscar o cliente no banco de dados
-    const client = await clientsModel.findOne({ where: { email } });
+    const client = await clientsModel.findOne({ where: { email , senha } });
 
     if (client) {
       // Definir status de login como verdadeiro
